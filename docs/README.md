@@ -1,4 +1,4 @@
-#### ALC DevOps Solution
+# ALC DevOps Solution
 
 This is a simple solution which creates and run two (_2_) containers namely: **mongo** and **app**.  
 
