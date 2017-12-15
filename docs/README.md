@@ -4,7 +4,7 @@ This is a simple solution which creates and run two (_2_) containers namely: **m
 
 The mongo container runs mongo db which has a mount point to `./data/db`.  
 
-The app container houses the main app which is copied from `./app/UserManager`.  
+The app container houses the main app which is copied from `./UserManager`.  
 
 To run the app, follow the steps:  
 - Clone the [repo](https://github.com/toondaey/alc-devops) with `git clone --recursive https://github.com/toondaey/alc-devops.git`.
