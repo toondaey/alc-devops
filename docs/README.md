@@ -7,7 +7,7 @@ The mongo container runs mongo db which has a mount point to `./data/db`.
 The app container houses the main app which is copied from `./app/UserManager`.  
 
 To run the app, follow the steps:  
-- Clone the [repo](https://github.com/toondaey/alc-devops.git) with `git clone --recursive https://github.com/toondaey/alc-devops.git`.
+- Clone the [repo](https://github.com/toondaey/alc-devops) with `git clone --recursive https://github.com/toondaey/alc-devops.git`.
 - (Duplicate and) rename `./.env-example` to `./env`.
 - Also (duplicate and) rename `./UserManager/.env-example` to `./UserManager/.env`.
 - From `./` run `docker-compose up -d`.
