@@ -1,6 +1,6 @@
 version: "3"
 services: 
-  workspace: 
+  app: 
     restart: on-failure
     build: 
       args: 
@@ -10,6 +10,8 @@ services:
     ports: 
       - "3000:3000"
     links:
+      - mongo
+    depends_on: 
       - mongo
   mongo:
     build: 
@@ -21,3 +23,6 @@ services:
       - ./logs/mongo:/var/logs/mongo
     ports: 
       - "${MONGO_PORT}:27017"
+
+volumes:
+  mongo:
