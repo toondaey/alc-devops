@@ -1,0 +1,23 @@
+version: "3"
+services: 
+  workspace: 
+    restart: on-failure
+    build: 
+      args: 
+        - NODE_VERSION=${NODE_VERSION}
+        - APP=${APP}
+      context: .
+    ports: 
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    build: 
+      args:
+        - MONGO_VERSION=${MONGO_VERSION}
+      context: ./mongo
+    volumes:
+      - ${MONGO_DATA}:/data/db
+      - ./logs/mongo:/var/logs/mongo
+    ports: 
+      - "${MONGO_PORT}:27017"
