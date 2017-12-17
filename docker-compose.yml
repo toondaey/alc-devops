@@ -1,18 +1,21 @@
-version: "3"
+version: "2"
 services: 
   app: 
     restart: on-failure
-    build: 
+    build:
+      dockerfile: app 
       args: 
         - NODE_VERSION=${NODE_VERSION}
         - APP=${APP}
       context: .
     ports: 
-      - "3000:3000"
+      - ${APP_PORT}:3000
     links:
       - mongo
     depends_on:
       - mongo
+    networks:
+      - alc
   mongo:
     build: 
       args:
@@ -22,7 +25,13 @@ services:
       - ${MONGO_DATA}:/data/db
       - ./logs/mongo:/var/log/mongodb
     ports: 
-      - "${MONGO_PORT}:27017"
+      - ${MONGO_PORT}:27017
+    networks:
+      - alc
 
 volumes:
   mongo:
+
+networks:
+  alc:
+    driver: 'bridge'
