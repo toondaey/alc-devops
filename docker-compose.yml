@@ -1,21 +1,16 @@
 version: "2"
 services: 
-  app: 
-    restart: on-failure
+  workspace:
     build:
-      dockerfile: app 
-      args: 
-        - NODE_VERSION=${NODE_VERSION}
-        - APP=${APP}
-      context: .
+      context: ./workspace
+    tty: true
+    depends_on: 
+      - mongo
     ports: 
-      - ${APP_PORT}:3000
-    links:
-      - mongo
-    depends_on:
-      - mongo
-    networks:
+      - "google.com:${APP_PORT}:3000"
+    networks: 
       - alc
+    command: ["pm2-docker", "server.js"]
   mongo:
     build: 
       args:
@@ -31,6 +26,7 @@ services:
 
 volumes:
   mongo:
+    driver: 'local'
 
 networks:
   alc:
