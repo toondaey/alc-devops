@@ -1,16 +1,20 @@
 version: "2"
 services: 
+## Workpace container
   workspace:
     build:
+      args: 
+        - VERSION=${WORKSPACE_IMAGE_VERSION}
       context: ./workspace
     tty: true
     depends_on: 
       - mongo
     ports: 
-      - "google.com:${APP_PORT}:3000"
+      - "${APP_PORT}:3000"
     networks: 
       - alc
     command: ["pm2-docker", "server.js"]
+## Mongo container
   mongo:
     build: 
       args:
@@ -18,16 +22,13 @@ services:
       context: ./mongo
     volumes:
       - ${MONGO_DATA}:/data/db
-      - ./logs/mongo:/var/log/mongodb
+      - ${MONGO_LOGS}:/var/log/mongodb
     ports: 
       - ${MONGO_PORT}:27017
     networks:
       - alc
 
-volumes:
-  mongo:
-    driver: 'local'
-
+## Networks
 networks:
   alc:
     driver: 'bridge'

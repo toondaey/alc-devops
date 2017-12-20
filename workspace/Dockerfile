@@ -1,15 +1,13 @@
-FROM phusion/passenger-nodejs:latest
+ARG VERSION=latest
 
-# COPY ./install /tmp/install
+FROM phusion/passenger-nodejs:${VERSION}
 
-# RUN chmod +x /tmp/install && \
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install git -y -yy && \
     mkdir -p /var/www/app && \
-    git clone https://github.com/toondaey/UserManager.git /var/www/app/;
-
-# RUN /tmp/install;
+    git clone https://github.com/toondaey/UserManager.git /var/www/app/ && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
 
 WORKDIR /var/www/app
 
