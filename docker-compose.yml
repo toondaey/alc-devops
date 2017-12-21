@@ -5,6 +5,7 @@ services:
     build:
       args: 
         - VERSION=${WORKSPACE_IMAGE_VERSION}
+        - APPLICATION=${APP_REPO}
       context: ./workspace
     tty: true
     depends_on: 
@@ -13,7 +14,8 @@ services:
       - "${APP_PORT}:3000"
     networks: 
       - alc
-    command: ["pm2-docker", "server.js"]
+    command: ["pm2-docker", "start", "pm2.json"]
+    restart: on-failure
 ## Mongo container
   mongo:
     build: 
@@ -27,6 +29,7 @@ services:
       - ${MONGO_PORT}:27017
     networks:
       - alc
+    restart: on-failure
 
 ## Networks
 networks:

@@ -1,0 +1,9 @@
+{
+    "apps": [{
+        "name": "User Manager",
+        "script": "server.js",
+        "env": {
+            "production": true
+        }
+    }]
+}

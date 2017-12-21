@@ -1,4 +1,6 @@
 # ALC-Microsoft DevOps Solution
+  
+https://circleci.com/gh/:owner/:repo/tree/:branch.png?circle-token=:circle-token
 
 This is a simple solution which creates and run two (2) containers namely: **mongo** and **workspace**.  
 
