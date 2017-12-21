@@ -7,7 +7,6 @@ services:
         - VERSION=${WORKSPACE_IMAGE_VERSION}
         - APPLICATION=${APP_REPO}
       context: ./workspace
-    tty: true
     depends_on: 
       - mongo
     ports: 
